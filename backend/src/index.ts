@@ -30,7 +30,7 @@ app.use('/api/projects/:id/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-    const frontendPath = path.join(process.cwd(), 'frontend/dist');
+    const frontendPath = path.join(process.cwd(), 'frontend', 'dist');
 
     app.use(express.static(frontendPath));
 
