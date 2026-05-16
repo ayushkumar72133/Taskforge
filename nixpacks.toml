@@ -1,10 +1,13 @@
+[variables]
+NIXPACKS_APP_DIR = "."
+
 providers = ["node"]
 
 [phases.setup]
 nixPkgs = ["nodejs", "npm"]
 
 [phases.install]
-cmds = ["npm install"]
+cmds = ["npm install --include=dev"]
 
 [phases.build]
 cmds = ["npm run build"]

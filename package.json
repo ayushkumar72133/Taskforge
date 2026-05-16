@@ -7,10 +7,8 @@
         "backend"
     ],
     "scripts": {
-        "build": "npm run build:frontend && npm run build:backend",
-        "build:frontend": "cd frontend && npm install && npm run build",
-        "build:backend": "cd backend && npm install && npm run build",
-        "start": "cd backend && node dist/index.js",
+        "build": "npm run build --workspaces",
+        "start": "node backend/dist/index.js",
         "dev:backend": "cd backend && npm run dev",
         "dev:frontend": "cd frontend && npm run dev"
     }
