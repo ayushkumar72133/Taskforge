@@ -12,6 +12,11 @@ const connectDB = async (): Promise<void> => {
     uri = uri.slice(1, -1).trim();
   }
 
+  // Handle case where user might have pasted "MONGODB_URI=mongodb+srv://..." as the value
+  if (uri.startsWith('MONGODB_URI=')) {
+    uri = uri.replace('MONGODB_URI=', '').trim();
+  }
+
   await mongoose.connect(uri);
   console.log('MongoDB connected');
 };
