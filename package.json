@@ -2,6 +2,10 @@
     "name": "team-task-manager",
     "version": "1.0.0",
     "private": true,
+    "workspaces": [
+        "frontend",
+        "backend"
+    ],
     "scripts": {
         "build": "npm run build:frontend && npm run build:backend",
         "build:frontend": "cd frontend && npm install && npm run build",
