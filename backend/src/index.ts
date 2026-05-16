@@ -31,12 +31,19 @@ app.use('/api/dashboard', dashboardRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     const frontendPath = path.join(__dirname, '../../frontend/dist');
-
-    app.use(express.static(frontendPath));
-
-    app.get('*', (_req, res) => {
-        res.sendFile(path.join(frontendPath, 'index.html'));
-    });
+    
+    // Only serve frontend if the directory exists
+    if (require('fs').existsSync(frontendPath)) {
+        app.use(express.static(frontendPath));
+        app.get('*', (_req, res) => {
+            res.sendFile(path.join(frontendPath, 'index.html'));
+        });
+    } else {
+        console.warn('Frontend build not found at:', frontendPath);
+        app.get('/', (_req, res) => {
+            res.json({ message: 'Backend is running. Frontend not found.' });
+        });
+    }
 }
 
 connectDB()
